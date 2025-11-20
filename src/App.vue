@@ -4,6 +4,7 @@ import GameSetup from './components/GameSetup.vue';
 import GameWheel from './components/GameWheel.vue';
 import GameStats from './components/GameStats.vue';
 import type { GameOption, RoundResult } from './types';
+import { soundService } from './services/SoundService';
 
 const phase = ref<'setup' | 'game'>('setup');
 const options = ref<GameOption[]>([]);
@@ -25,12 +26,14 @@ const handleSpinEnd = (selected: GameOption) => {
   });
 
   if (isEliminated) {
+    soundService.playElimination();
     // Remove from options after a short delay to let the user see the result
     setTimeout(() => {
       options.value = options.value.filter(opt => opt.id !== selected.id);
       
       // Check for game over
       if (options.value.length === 0) {
+        soundService.playWinner();
         alert('Game Over! All options eliminated.');
         resetGame();
       }

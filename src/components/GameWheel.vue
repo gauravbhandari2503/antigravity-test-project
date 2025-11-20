@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import type { GameOption } from '../types';
+import { soundService } from '../services/SoundService';
 
 const props = defineProps<{
   options: GameOption[];
@@ -58,6 +59,7 @@ const spin = () => {
   if (isSpinning.value || props.options.length === 0) return;
   
   isSpinning.value = true;
+  soundService.playSpin();
   
   // Random spins (5-10 full rotations) + random angle
   const extraSpins = 360 * (5 + Math.floor(Math.random() * 5));
@@ -68,6 +70,7 @@ const spin = () => {
   
   setTimeout(() => {
     isSpinning.value = false;
+    soundService.stopSpin();
     determineWinner(totalRotation % 360);
   }, 4000); // Match CSS transition duration
 };

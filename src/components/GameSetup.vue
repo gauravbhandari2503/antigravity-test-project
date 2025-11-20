@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import type { GameOption } from '../types';
+import { soundService } from '../services/SoundService';
 
 const emit = defineEmits<{
   (e: 'start-game', options: GameOption[]): void;
@@ -26,6 +27,8 @@ const addOption = () => {
     isSafe: newOptionIsSafe.value,
     color
   });
+
+  soundService.playAddPlayer();
 
   newOptionLabel.value = '';
   newOptionIsSafe.value = false;
