@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import type { GameOption } from '../types';
-import { soundService } from '../services/SoundService';
+import type { GameOption } from '../../../types';
+import { soundService } from '../../../services/SoundService';
 
 const props = defineProps<{
   options: GameOption[];

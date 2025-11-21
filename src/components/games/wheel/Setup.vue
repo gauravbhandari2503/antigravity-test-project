@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import type { GameOption } from '../types';
-import { soundService } from '../services/SoundService';
+import type { GameOption } from '../../../types';
+import { soundService } from '../../../services/SoundService';
 
 const emit = defineEmits<{
   (e: 'start-game', options: GameOption[]): void;
@@ -101,6 +101,7 @@ h2 {
 
 .input-group {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
   margin-bottom: 24px;
   align-items: center;

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { RoundResult } from '../types';
+import type { RoundResult } from '../../../types';
 
 defineProps<{
   history: RoundResult[];
